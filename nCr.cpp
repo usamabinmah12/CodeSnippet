@@ -1,15 +1,18 @@
-const int N = 30 + 12;
-long long nCr[N][N], fact[N];
-void prec()
-{
-    fact[0] = 1;
-  for(int n = 0 ; n < N ; n++ ) {
-    if(n) {
-        fact[n] = fact[n - 1] * n;
+#include<bits/stdc++.h>
+using namespace std;
+
+const int N = 1010, mod = 1e9 + 7;
+int C[N][N];
+int32_t main() {
+  ios_base::sync_with_stdio(0);
+  cin.tie(0);
+  C[0][0] = 1;
+  for (int n = 1; n < N; n++) {
+    C[n][0] = 1;
+    for (int k = 1; k <= n; k++) {
+      C[n][k] = (C[n - 1][k - 1] + C[n - 1][k]) % mod;
     }
-    nCr[n][0] = 1;
-    for(int r = 1 ;  r  < N ; r++) {
-        nCr[n][r] = nCr[n- 1][r - 1] + nCr[n - 1][r];
-    }
-   }
+  }
+  cout << C[6][2] << '\n';
+  return 0;
 }
